@@ -1,4 +1,4 @@
-const input = require('../../common/read-input');
+const { input, helpers } = require('../../common/set-up-workplace');
 
 const MIN_ROW = 0;
 const MAX_ROW = 127;
@@ -39,8 +39,7 @@ const missingSeatIDs = new Set(Array.from(Array(maxPossibleSeatID).keys()));
 let highestSeatID = -Infinity;
 let lowestSeatID = Infinity;
 input.forEach(seatCode => {
-    const rowCode = seatCode.slice(0, 7).split('');
-    const colCode = seatCode.slice(7).split('');
+    const [ rowCode, colCode ] = helpers.splitStringAtIndex(seatCode, 7).map(helpers.stringToCharArray)
     const rowNumber = getRowNumber(rowCode);
     const colNumber = getColNumber(colCode);
     const seatID = getSeatID(rowNumber, colNumber);
