@@ -5,11 +5,8 @@ const variations = input.reduce((acc, cur, index, source) => {
     if (op === 'acc') {
         return acc;
     }
-    const variation = [
-        ...source.slice(0, index),
-        `${ op === 'nop' ? 'jmp' : 'nop' } ${value}`,
-        ...source.slice(index + 1)
-    ];
+    const variation = [ ...source ];
+    variation[index] = `${ op === 'nop' ? 'jmp' : 'nop' } ${value}`;
     return [ ...acc, variation ];
 }, []);
 
