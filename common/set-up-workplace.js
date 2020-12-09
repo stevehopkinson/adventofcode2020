@@ -5,5 +5,5 @@ const helpers = require('./helper-functions');
 module.exports = {
     helpers,
     input,
-    input$: rxjs.of(input)
+    input$: rxjs.from(input)
 };
