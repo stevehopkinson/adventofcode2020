@@ -1,15 +1,11 @@
 const { input$, helpers } = require('../../common/set-up-workplace');
-const { map, filter, scan, first } = require('rxjs/operators');
+const { map, filter, bufferCount, first } = require('rxjs/operators');
 
 const groupSize = 25;
 
 input$.pipe(
     map(val => parseInt(val)),
-    scan((acc, val) => {
-        acc.push(val);
-        return acc.slice(-(groupSize + 1));
-    }, []),
-    filter(arr => arr.length === groupSize + 1),
+    bufferCount(3, 1),
     filter((group) => {
         const [ currentNumber, ...otherNumbers ] = group.slice().reverse();
         const possibleValues = helpers.getPairsFromArray(otherNumbers).map(([a, b]) => a + b);
