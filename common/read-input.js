@@ -6,5 +6,17 @@ const readInput = () => {
     return result.slice(0, -1);
 };
 
+const readTestInput = () => {
+    try {
+        var data = fs.readFileSync('./../test.txt', 'utf8');
+        const result = data.split('\n');
+        return result.slice(0, -1);
+    } catch {
+        return [];
+    }
+};
 
-module.exports = readInput();
+module.exports = {
+    input: readInput(),
+    test: readTestInput()
+}
