@@ -2,7 +2,6 @@ const { input } = require('../../common/set-up-workplace');
 
 const trie = {};
 const pathsFromValueMap = {};
-let callsSaved = 0;
 
 const countPathsFromValue = value => {
     if (pathsFromValueMap[value]) {
