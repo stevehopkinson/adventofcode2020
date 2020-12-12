@@ -7,5 +7,8 @@ module.exports = {
     input,
     input$: rxjs.from(input),
     test,
-    test$: rxjs.from(test)
+    test$: rxjs.from(test),
+    validateLogic: (func, expectedTestResult) => func(test) === expectedTestResult
+        ? console.log('test passed, actual result is:', func(input))
+        : console.log('test failed. expected', expectedTestResult, 'received', func(test))
 };
